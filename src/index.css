@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-50 text-slate-800 font-sans antialiased;
+    min-height: 100vh;
+  }
+
+  /* Custom scrollbars */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-unt-blue text-white px-4 py-2.5 rounded-lg font-medium shadow-sm hover:bg-unt-hover active:scale-[0.98] transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply bg-white text-slate-700 border border-slate-200 px-4 py-2.5 rounded-lg font-medium shadow-sm hover:bg-slate-50 active:scale-[0.98] transition-all flex items-center justify-center gap-2;
+  }
+  .btn-outline-unt {
+    @apply bg-transparent text-unt-blue border border-unt-blue px-4 py-2 rounded-lg font-medium hover:bg-unt-light transition-all flex items-center justify-center gap-2;
+  }
+  .btn-danger {
+    @apply bg-rose-600 text-white px-4 py-2.5 rounded-lg font-medium shadow-sm hover:bg-rose-700 active:scale-[0.98] transition-all flex items-center justify-center gap-2;
+  }
+
+  .card-unt {
+    @apply bg-white rounded-xl border border-slate-200/80 shadow-card p-6;
+  }
+
+  .input-unt {
+    @apply w-full px-3.5 py-2.5 rounded-lg border border-slate-300 bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-unt-blue/30 focus:border-unt-blue transition-all;
+  }
+  
+  .badge-unt {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+}
