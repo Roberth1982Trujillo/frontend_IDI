@@ -4,6 +4,32 @@ import { useToast } from '../../context/ToastContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { ShieldCheck, Lock, User, ArrowRight, Loader2, KeyRound } from 'lucide-react';
 
+/**
+ * Traduce un error de la petición de login a un mensaje claro.
+ * Evita mostrar "credenciales incorrectas" cuando el problema es de
+ * conexión, configuración del despliegue o del servidor.
+ */
+const getLoginErrorMessage = (err) => {
+  const status = err.response?.status;
+
+  if (!err.response) {
+    return 'No se pudo conectar con el servidor. Verifique su conexión e intente nuevamente.';
+  }
+  if (status === 401) {
+    return 'Usuario o contraseña incorrectos. Verifique su acceso.';
+  }
+  if (status === 403) {
+    return 'Acceso denegado: no dispone de permisos para ingresar.';
+  }
+  if (status === 404 || status === 405) {
+    return 'No se pudo comunicar con el servicio de autenticación. Contacte al administrador del sistema.';
+  }
+  if (status >= 500) {
+    return 'El servidor no pudo procesar la solicitud. Intente nuevamente en unos minutos.';
+  }
+  return err.response?.data?.message || 'No se pudo iniciar sesión. Intente nuevamente.';
+};
+
 const LoginAdminView = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +64,7 @@ const LoginAdminView = () => {
         navigate('/reportes/indicadores');
       }
     } catch (err) {
-      error(err.response?.data?.message || 'Credenciales incorrectas. Verifique su acceso.');
+      error(getLoginErrorMessage(err));
     } finally {
       setLoading(false);
     }
