@@ -16,14 +16,7 @@ RUN npm run build
 # Etapa 2: Servidor Web Nginx
 FROM nginx:alpine
 
-# Variables de entorno por defecto para Railway y Nginx
-ENV PORT=80
-ENV BACKEND_URL=https://backendidi-production.up.railway.app
-ENV BACKEND_HOST=backendidi-production.up.railway.app
-ENV NGINX_ENVSUBST_FILTER="PORT BACKEND_URL BACKEND_HOST"
-
-# Copiar plantilla para envsubst dinámico en Railway
-COPY nginx.conf.template /etc/nginx/templates/default.conf.template
+# Copiar configuración directa de Nginx con Reverse Proxy y SPA
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Copiar estáticos compilados
