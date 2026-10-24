@@ -63,3 +63,10 @@ Aplicación web desarrollada para la gestión, seguimiento y control de calidad 
 - **Módulo Administrador:**
   - Administración de catálogo docente y usuarios.
   - Mantenimiento de catálogos institucionales (Facultades, Escuelas, ODS, Líneas UNT, Áreas Concytec).
+
+## Despliegue en Railway
+
+1. Crear el servicio desde este repositorio (Railway detecta Vite y sirve `dist` automaticamente, sin Dockerfile ni Nginx).
+2. En Variables del servicio agregar: `VITE_API_BASE_URL=https://backendidi-production.up.railway.app/api`
+3. Redesplegar. La variable se incrusta en el build, por lo que cualquier cambio requiere un nuevo despliegue.
+
