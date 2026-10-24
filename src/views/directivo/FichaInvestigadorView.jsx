@@ -14,6 +14,7 @@ import {
   ShieldCheck,
   CheckCircle,
 } from 'lucide-react';
+import { resolveFileUrl } from '../../utils/urlHelper';
 
 const FichaInvestigadorView = () => {
   const { error } = useToast();
@@ -212,7 +213,7 @@ const FichaInvestigadorView = () => {
                               {p.evidencias.map((ev, i) => (
                                 <a
                                   key={i}
-                                  href={ev.enlaceUrl}
+                                  href={resolveFileUrl(ev.enlaceUrl)}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-[11px] text-unt-blue hover:underline flex items-center gap-1 truncate max-w-[150px]"

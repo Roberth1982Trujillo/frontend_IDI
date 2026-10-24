@@ -13,6 +13,7 @@ import {
   AlertTriangle,
   CheckCircle2,
 } from 'lucide-react';
+import { resolveFileUrl } from '../../utils/urlHelper';
 
 const SupervisionView = () => {
   const { error } = useToast();
@@ -184,7 +185,7 @@ const SupervisionView = () => {
                           {prod.evidencias.map((ev, i) => (
                             <a
                               key={i}
-                              href={ev.enlaceUrl}
+                              href={resolveFileUrl(ev.enlaceUrl)}
                               target="_blank"
                               rel="noopener noreferrer"
                               className="text-[11px] text-unt-blue hover:underline flex items-center gap-1 max-w-[130px] truncate"

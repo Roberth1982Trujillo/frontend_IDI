@@ -13,6 +13,7 @@ import {
   Clock,
   ExternalLink,
 } from 'lucide-react';
+import { resolveFileUrl } from '../../utils/urlHelper';
 import useEscapeKey from '../../hooks/useEscapeKey';
 
 const CorreccionModal = ({ isOpen, onClose, onSuccess, produccion }) => {
@@ -152,7 +153,7 @@ const CorreccionModal = ({ isOpen, onClose, onSuccess, produccion }) => {
                 {produccion.evidencias.map((ev, i) => (
                   <a
                     key={i}
-                    href={ev.enlaceUrl}
+                    href={resolveFileUrl(ev.enlaceUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-xs text-unt-blue hover:underline flex items-center gap-1.5"

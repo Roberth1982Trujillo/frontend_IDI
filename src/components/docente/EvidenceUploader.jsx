@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { UploadCloud, Link as LinkIcon, FileText, Trash2, Plus, Loader2, CheckCircle2 } from 'lucide-react';
 import axiosClient from '../../api/axiosClient';
 import { useToast } from '../../context/ToastContext';
+import { resolveFileUrl } from '../../utils/urlHelper';
 
 const EvidenceUploader = ({ evidencias, onChange, min = 2, max = 3, label = 'Evidencias documentales' }) => {
   const [uploading, setUploading] = useState(false);
@@ -185,7 +186,7 @@ const EvidenceUploader = ({ evidencias, onChange, min = 2, max = 3, label = 'Evi
                     {item.nombreOriginal || 'Evidencia adjunta'}
                   </div>
                   <a
-                    href={item.enlaceUrl}
+                    href={resolveFileUrl(item.enlaceUrl)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-[11px] text-unt-blue hover:underline truncate block"
